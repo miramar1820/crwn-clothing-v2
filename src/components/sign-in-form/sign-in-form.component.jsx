@@ -1,12 +1,12 @@
 import { useState } from "react";
 import {
   signInWithGooglePopup,
-  createUserDocumentFromAuth,
   signInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils";
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
 import "./sign-in-form.styles.scss";
+import { useNavigate } from "react-router-dom";
 
 const defaultFormFields = {
   email: "",
@@ -16,11 +16,11 @@ const defaultFormFields = {
 const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
+  const navigate = useNavigate();
   console.log(formFields);
 
   const logGoogleUser = async () => {
-    const { user } = await signInWithGooglePopup();
-    await createUserDocumentFromAuth(user);
+    await signInWithGooglePopup();
   };
 
   const resetFormFields = () => {
@@ -30,14 +30,13 @@ const SignInForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const res = await signInAuthUserWithEmailAndPassword(email, password);
-      console.log(
-        "🚀 ~ file: sign-in-form.component.jsx:34 ~ handleSubmit ~ res:",
-        res
+      const { user } = await signInAuthUserWithEmailAndPassword(
+        email,
+        password
       );
       resetFormFields();
+      navigate("/");
     } catch (error) {
-      // eslint-disable-next-line default-case
       switch (error.code) {
         case "auth/wrong-password":
           alert("Incorrect password for email");
