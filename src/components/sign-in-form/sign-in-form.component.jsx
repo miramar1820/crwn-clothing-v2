@@ -17,7 +17,7 @@ const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
   const navigate = useNavigate();
-  console.log(formFields);
+  // console.log(formFields);
 
   const logGoogleUser = async () => {
     await signInWithGooglePopup();

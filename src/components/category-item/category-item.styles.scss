@@ -1,8 +1,9 @@
 .category-container {
-    min-width: 30%;
+  // width: 30%;
+    min-width: 200px;
     height: 240px;
-    flex: 1 1 auto;
     display: flex;
+    flex: 1 1 30%;
     align-items: center;
     justify-content: center;
     border: 1px solid black;
