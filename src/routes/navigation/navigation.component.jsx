@@ -11,10 +11,7 @@ import "./navigation.styles.scss";
 const Navigation = () => {
   const { currentUser } = useContext(UserContext);
   const { isCartOpen } = useContext(CartContext);
-  console.log(
-    "🚀 ~ file: navigation.component.jsx:9 ~ Navigation ~ currentUser:",
-    currentUser
-  );
+  
 
   return (
     <>

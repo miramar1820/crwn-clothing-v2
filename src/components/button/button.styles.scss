@@ -13,7 +13,12 @@
   cursor: pointer;
   display: flex;
   justify-content: center;
-
+  &:disabled, &:disabled:hover {
+    background-color: #ccc;
+    border: none;
+    color: white;
+    pointer-events: none;
+  }
   &:hover {
     background-color: white;
     color: black;
